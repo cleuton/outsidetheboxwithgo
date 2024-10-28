@@ -153,6 +153,14 @@ func computeTemperature(adcValue uint32) float64 {
 
 ```
 
+You may have problems running the above script on Raspberry PI. Use the `build` command this way: 
+
+```shell
+GOOS=linux GOARCH=arm CGO_ENABLED=0 go build 
+```
+
+This `GCO_ENABLED=0` avoids a problem with old versions. 
+
 ## Message processor
 
 Now the final destination: The message processor. This will run in a computer that can reach the **MQTT broker**. 
@@ -210,3 +218,15 @@ func main() {
 }
 
 ```
+
+This is the running solution on **Raspberry PI**: 
+
+![](./iot_completo.jpg)
+
+This is Raspberry PI running the application and posting to MQTT: 
+
+![](./20241028_14h58m37s_grim%20copy.png)
+
+And this is the MQTT receiver application, running on other computer: 
+
+![](./mqtt_receiver.png)
